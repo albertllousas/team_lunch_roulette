@@ -1,0 +1,11 @@
+$primary-color: #2c3e50;
+
+
+// overriding blu
+//check vars at https://chenz24.github.io/vue-blu/#/en/customize
+
+$radius:	5px;
+$radius-large: $radius;
+$radius-small: $radius;
+//$family-primary
+@import "~vue-blu/src/scss/blu";
