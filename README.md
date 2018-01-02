@@ -1,16 +1,17 @@
 # TeamLunchRoulette
 
-## Description
-
 Are you tired to create the typical todo-list project? 
 
-- Home view: Simple form to create team(address, company, team name, background, photo)
-- Team view: Restaurant card with map and props
-    - Choose another
-    - Add restaurant
-    - Delete
-    - Edit team
-    - Check: http://bashooka.com/coding/cool-css-card-ui-examples/ + animated backgrounds depending on type
+Here not another todo list app, a real world application just to try Vue and Elixir in a real world application.
+
+This app is a simple tool that allow teams to choose where to eat everyday randomly.
+
+    
+## Development requirements
+
+- Elixir 1.5.1
+- Docker 17.09.1 
+- npm 5.6.0
 
 ## Run in your local machine
 
@@ -19,11 +20,12 @@ To start your Phoenix server:
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
+  * Pull mongo docker image with `docker pull mongo`
+  * Run mongo image with `docker run --name mongo-team-lunch-roulette -p 27017:27017 -it --rm -d mongo` 
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
 ## Packaging for prod
 
@@ -31,11 +33,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 cd assets && node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js
 ```
 
-## Requirements Versions
-elixir 
-docker 
-npm 
-
+Ready to run in production? Please [check deployment guides](http://www.phoenixframework.org/docs/deployment).
 
 ## Tech stack
 
@@ -45,10 +43,12 @@ npm
     - scss
     - ES6
     - Jest & vue-test-utils
+    
 - Back-end:
     - Elixir
     - Phoenix
     - Mix
+    
 - Repository:
     - MongoDB
 
@@ -117,6 +117,15 @@ https://docs.docker.com/engine/reference/run/#foreground
 
 check params
 
+
+
+- Home view: Simple form to create team
+- Team view: Restaurant card with map and props
+    - Choose another
+    - Add restaurant
+    - Delete
+    - Edit team
+    - Check: http://bashooka.com/coding/cool-css-card-ui-examples/ + animated backgrounds depending on type
 
 
 ## Learn more

@@ -15,6 +15,14 @@ config :team_lunch_roulette, TeamLunchRouletteWeb.Endpoint,
 #  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
+
+# services
+config :team_lunch_roulette, teams: TeamLunchRoulette.TeamsInMongo
+
+# repository
+config :team_lunch_roulette, :db,
+       name: "my_mongo_dev"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -50,10 +58,10 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :team_lunch_roulette, TeamLunchRoulette.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "team_lunch_roulette_dev",
-  hostname: "localhost",
-  pool_size: 10
+#config :team_lunch_roulette, TeamLunchRoulette.Repo,
+#  adapter: Ecto.Adapters.Postgres,
+#  username: "postgres",
+#  password: "postgres",
+#  database: "team_lunch_roulette_dev",
+#  hostname: "localhost",
+#  pool_size: 10

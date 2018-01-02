@@ -63,10 +63,10 @@ describe('Home - Form', () => {
     const wrapper = mount(Component);
     wrapper.setData({'address': 'bcn', 'company': 'TW', 'team': 'magnet'});
     wrapper.find('form').trigger('submit');
-    teams.saveTeam = jest.fn()
+    teams.saveTeam = jest.fn();
 
     await waitForValidation(4);
-    expect(teams.saveTeam).toBeCalledWith({});
+    expect(teams.saveTeam).toBeCalledWith({'address': 'bcn', 'company': 'TW', 'key': null, 'team': 'magnet'});
 
   });
 

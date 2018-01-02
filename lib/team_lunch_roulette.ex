@@ -9,4 +9,16 @@ defmodule TeamLunchRoulette do
   https://hexdocs.pm/phoenix/contexts.html
 
   """
+  @doc """
+  Models
+  """
+  defmodule Team do
+    defstruct name: "", company: "", address: "", key: nil
+  end
+  @doc """
+  Behaviours
+  """
+  defmodule Teams do
+    @callback create(team :: Team.t) :: {:ok, Team.t} | {:error, Error.t}
+  end
 end

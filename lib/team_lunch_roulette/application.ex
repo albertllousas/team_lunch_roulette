@@ -9,11 +9,21 @@ defmodule TeamLunchRoulette.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-#      supervisor(TeamLunchRoulette.Repo, []),
+      #      supervisor(TeamLunchRoulette.Repo, []),
       # Start the endpoint when the application starts
       supervisor(TeamLunchRouletteWeb.Endpoint, []),
       # Start your own worker by calling: TeamLunchRoulette.Worker.start_link(arg1, arg2, arg3)
       # worker(TeamLunchRoulette.Worker, [arg1, arg2, arg3]),
+      worker(
+        Mongo,
+        [
+          [
+            name: :mongo,
+            database: Application.get_env(:team_lunch_roulette, :db)[:name],
+            pool: DBConnection.Poolboy
+          ]
+        ]
+      )
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -19,7 +19,8 @@ describe('teams', () => {
   test('saving a team should make an http post with the expected params', () => {
     let team = new Team('Magnet', 'TW', 'BCN');
     saveTeam(team);
-    expect(mockAxios.post).toHaveBeenCalledWith('/teams', {'address': 'BCN', 'company': 'TW', 'team': 'Magnet'}, {});
+    expect(mockAxios.post)
+      .toHaveBeenCalledWith('/api/teams', {"address": "BCN", "company": "TW", "key": null, "team": "Magnet"}, {});
 
   });
 

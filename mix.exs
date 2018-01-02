@@ -20,13 +20,13 @@ defmodule TeamLunchRoulette.Mixfile do
   def application do
     [
       mod: {TeamLunchRoulette.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :mongodb, :poolboy]
     ]
   end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -35,8 +35,11 @@ defmodule TeamLunchRoulette.Mixfile do
     [
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
-#      {:phoenix_ecto, "~> 3.2"},
-#      {:postgrex, ">= 0.0.0"},
+      #      {:phoenix_ecto, "~> 3.2"},
+      #      {:postgrex, ">= 0.0.0"},
+      {:secure_random, "~> 0.5"},
+      {:mongodb, "~> 0.4.3"},
+      {:poolboy, "~> 1.5"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
@@ -52,9 +55,9 @@ defmodule TeamLunchRoulette.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-#      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-#      "ecto.reset": ["ecto.drop", "ecto.setup"],
-#      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      #      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      #      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      #      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

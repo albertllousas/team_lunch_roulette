@@ -3,10 +3,11 @@ import axios from 'axios';
 const axiosParams = {};
 
 class Team {
-  constructor (team, company, address) {
+  constructor (team, company, address, key = null) {
     this.team = team;
     this.company = company;
     this.address = address;
+    this.key = key;
   }
 }
 
