@@ -4,7 +4,7 @@
         <nav-bar/>
         <section class="section main-section">
             <home-header/>
-            <home-form/>
+            <router-view></router-view>
         </section>
 
         <div class="footer">
