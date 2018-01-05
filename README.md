@@ -51,17 +51,28 @@ Ready to run in production? Please [check deployment guides](http://www.phoenixf
     
 - Repository:
     - MongoDB
+    
 
 ## Test
 
- todo
+ Running the frontend tests:
+ ```
+ cd assets && npm test
+ ```
+ Running the backend tests:
+  ```
+  mix test
+  ```
 
 ## Implementation guidelines 
  
 ### Frontend
 
- todo
+ All the front is located at /assets
  
 ### Backend
 
- todo
+   * Official website: http://www.phoenixframework.org/
+   * Guides: http://phoenixframework.org/docs/overview
+   * Docs: https://hexdocs.pm/phoenix
+   * Source: https://github.com/phoenixframework/phoenix

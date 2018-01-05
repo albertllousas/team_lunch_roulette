@@ -25,12 +25,11 @@
 <script>
   import NavBar from './components/common/NavBar.vue';
   import HomeHeader from './components/home/Header.vue';
-  import HomeForm from './components/home/Form.vue';
 
   export default {
     name: 'app',
     components: {
-      HomeHeader, HomeForm, NavBar
+      HomeHeader, NavBar
     }
   };
 </script>

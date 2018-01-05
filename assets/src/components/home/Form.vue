@@ -79,7 +79,7 @@
           if (valid) {
             this.isLoading = true;
             saveTeam(new Team(this.team, this.company, this.address))
-              .then(() => console.log('yeah'))
+              .then((team) => console.log(team)/*here router.push team/{id}/suggested-restaurant if 0 in next redirect to create-restaurant*/)
               .catch(this.processErrorCreatingTeam);
           }
         });
