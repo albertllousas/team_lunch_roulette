@@ -24,7 +24,7 @@
 
 <script>
   import NavBar from './components/common/NavBar.vue';
-  import HomeHeader from './components/home/Header.vue';
+  import HomeHeader from './components/common/Header.vue';
 
   export default {
     name: 'app',
@@ -79,7 +79,8 @@
     }
 
     .is-primary {
-        background-color: #0AAFC4 !important;
+        /*0AAFC4*/
+        background-color: #27CFBE !important;
 
     }
 

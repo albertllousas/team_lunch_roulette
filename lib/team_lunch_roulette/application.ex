@@ -20,7 +20,10 @@ defmodule TeamLunchRoulette.Application do
           [
             name: :mongo,
             database: Application.get_env(:team_lunch_roulette, :db)[:name],
-            pool: DBConnection.Poolboy
+            pool: DBConnection.Poolboy,
+            username: Application.get_env(:team_lunch_roulette, :db)[:username],
+            password: Application.get_env(:team_lunch_roulette, :db)[:password],
+            auth_source: Application.get_env(:team_lunch_roulette, :db)[:name]
           ]
         ]
       )

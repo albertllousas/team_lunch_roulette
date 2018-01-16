@@ -2,6 +2,7 @@ defmodule TeamLunchRoulette.TeamsInMongoTest do
   use ExUnit.Case
 
   alias TeamLunchRoulette.Team
+  alias TeamLunchRoulette.TeamsInMongo
 
 
   setup_all do
@@ -11,7 +12,7 @@ defmodule TeamLunchRoulette.TeamsInMongoTest do
 
   test "should success creating a team" do
 
-    {:ok, result} = TeamLunchRoulette.TeamsInMongo.create(%Team{name: "magnet", company: "TW", address: "bcn"})
+    {:ok, result} = TeamsInMongo.create(%Team{name: "magnet", company: "TW", address: "bcn"})
 
     assert result.name == "magnet"
     assert result.company == "TW"

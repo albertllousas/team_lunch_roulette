@@ -13,7 +13,8 @@ defmodule TeamLunchRoulette do
   Models
   """
   defmodule Team do
-    defstruct name: "", company: "", address: "", key: nil
+    defstruct name: "", company: "", address: "", key: ""
+    @type t :: %Team{name: String.t, company: String.t, address: String.t, key: String.t}
   end
   @doc """
   Behaviours

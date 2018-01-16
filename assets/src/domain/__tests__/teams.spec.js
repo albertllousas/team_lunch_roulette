@@ -12,7 +12,7 @@ describe('teams', () => {
     let team = new Team('Magnet', 'TW', 'BCN');
     expect(team.address).toEqual('BCN');
     expect(team.company).toEqual('TW');
-    expect(team.team).toEqual('Magnet');
+    expect(team.name).toEqual('Magnet');
   });
 
 
@@ -20,7 +20,7 @@ describe('teams', () => {
     let team = new Team('Magnet', 'TW', 'BCN');
     saveTeam(team);
     expect(mockAxios.post)
-      .toHaveBeenCalledWith('/api/teams', {"address": "BCN", "company": "TW", "key": null, "team": "Magnet"}, {});
+      .toHaveBeenCalledWith('/api/teams', {"address": "BCN", "company": "TW", "key": null, "name": "Magnet"}, {});
 
   });
 

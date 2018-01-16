@@ -1,4 +1,4 @@
-import { mount } from 'vue-test-utils';
+import { mount, createLocalVue } from 'vue-test-utils';
 import Component from '../Form.vue';
 import Vue from 'vue';
 import * as teams from '@/domain/teams';
@@ -66,7 +66,48 @@ describe('Home - Form', () => {
     teams.saveTeam = jest.fn();
 
     await waitForValidation(4);
-    expect(teams.saveTeam).toBeCalledWith({'address': 'bcn', 'company': 'TW', 'key': null, 'team': 'magnet'});
+    expect(teams.saveTeam).toBeCalledWith({'address': 'bcn', 'company': 'TW', 'key': null, 'name': 'magnet'});
+
+  });
+
+  test('app is redirected to add restaurant view when team is created successfully', async () => {
+    const $router = {
+      push: jest.fn()
+    }
+    const wrapper = mount(Component, {
+      mocks: {
+        $router
+      }
+    });
+
+    teams.saveTeam = jest.fn();
+    teams.saveTeam.mockReturnValue(Promise.resolve({ key: '101' }));
+
+    wrapper.setData({'address': 'bcn', 'company': 'TW', 'team': 'magnet'});
+    wrapper.find('form').trigger('submit');
+
+    await waitForValidation(4);
+    await Vue.nextTick();
+
+    expect($router.push).toBeCalledWith({"path": "/teams/101/add-restaurant"});
+
+  });
+
+  test('app show an error when team is not created successfully', async () => {
+    const processErrorCreatingTeam = jest.fn();
+    const wrapper = mount(Component, {
+      methods: {processErrorCreatingTeam}
+    });
+
+    teams.saveTeam = jest.fn();
+    teams.saveTeam.mockReturnValue(Promise.reject(""));
+
+    wrapper.setData({'address': 'bcn', 'company': 'TW', 'team': 'magnet'});
+    wrapper.find('form').trigger('submit');
+
+    await waitForValidation(4);
+    await Vue.nextTick();
+    expect(processErrorCreatingTeam).toHaveBeenCalled();
 
   });
 

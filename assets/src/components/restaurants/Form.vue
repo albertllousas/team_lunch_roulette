@@ -13,7 +13,7 @@
                             v-validate="'required'"
                             class="input is-large"
                             placeholder="Team name"
-                            :class="{'input': true, 'is-danger': errors.has('team') }"
+                            v-bind:class="{'input': true, 'is-danger': errors.has('team') }"
                     />
                     <i class="fa fa-soccer-ball-o"></i>
                     <span v-show="errors.has('team')" class="help is-danger">{{ errors.first('team') }}</span>
@@ -60,7 +60,7 @@
 <script>
   import Vue from 'vue';
   import VeeValidate from 'vee-validate';
-  import { Team, saveTeam } from '../../domain/teams';
+  import { saveTeam, Team } from '../../domain/teams';
 
   Vue.use(VeeValidate);
 
@@ -79,7 +79,10 @@
           if (valid) {
             this.isLoading = true;
             saveTeam(new Team(this.team, this.company, this.address))
-              .then((team) => console.log(team)/*here router.push team/{id}/suggested-restaurant if 0 in next redirect to create-restaurant*/)
+              .then((team) => {
+                console.log(team)
+                this.$router.push({ path: `/teams/${team.key}/add-restaurant` })
+              })
               .catch(this.processErrorCreatingTeam);
           }
         });

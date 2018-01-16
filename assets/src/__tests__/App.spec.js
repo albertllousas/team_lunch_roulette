@@ -1,7 +1,7 @@
 import { shallow, mount } from 'vue-test-utils'
 import App from '../App.vue'
 import NavBar from '../components/common/NavBar.vue';
-import HomeHeader from '../components/home/Header.vue';
+import HomeHeader from '../components/common/Header.vue';
 
 describe('App', () => {
   test('is a Vue instance', () => {
