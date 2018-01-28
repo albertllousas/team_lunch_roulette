@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar">
         <div class="navbar-brand">
-            <!--<a class="navbar-item navbar-title" href="/">-->
-            <!--Team lunch Roulette-->
-            <!--</a>-->
+            <a class="navbar-item navbar-title" href="/" v-if="$route.path!=='/'">
+            Team lunch Roulette
+            </a>
 
             <!-- add this code in vue -->
             <div class="navbar-burger burger" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');document.querySelector('.navbar-burger').classList.toggle('is-active');">

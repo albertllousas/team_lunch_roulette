@@ -1,4 +1,4 @@
-defmodule TeamLunchRoulette.TeamsInMongo do
+defmodule TeamLunchRoulette.TeamsMongoImpl do
 
   alias TeamLunchRoulette.Team
 

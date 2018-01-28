@@ -24,5 +24,6 @@ defmodule TeamLunchRouletteWeb.Router do
      pipe_through :api
 
      post "/teams", TeamsController, :create
+     get "/maps/places", MapsController, :places
    end
 end

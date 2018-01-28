@@ -3,11 +3,11 @@
     <div id="app">
         <nav-bar/>
         <section class="section main-section">
-            <home-header/>
-            <router-view></router-view>
+            <router-view name="header"></router-view>
+            <router-view name="content"></router-view>
         </section>
 
-        <div class="footer">
+        <footer class="footer">
             <div class="container">
                 <div class="content has-text-centered ">
                     <p>
@@ -16,7 +16,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </footer>
 
     </div>
 
@@ -24,12 +24,11 @@
 
 <script>
   import NavBar from './components/common/NavBar.vue';
-  import HomeHeader from './components/common/Header.vue';
 
   export default {
     name: 'app',
     components: {
-      HomeHeader, NavBar
+     NavBar
     }
   };
 </script>
@@ -45,6 +44,10 @@
     #app .section {
         padding: 1em;
 
+    }
+
+    #app > section.main-section {
+        min-height: 600px;
     }
 
     @media screen and (min-height: 768px) {

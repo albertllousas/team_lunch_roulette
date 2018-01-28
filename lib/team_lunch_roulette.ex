@@ -22,4 +22,11 @@ defmodule TeamLunchRoulette do
   defmodule Teams do
     @callback create(team :: Team.t) :: {:ok, Team.t} | {:error, Error.t}
   end
+  @doc """
+  Google maps proxy, some calls in google maps are meant to be made on server side, they are not accepting CORS.
+  """
+  defmodule Maps do
+    @callback places(query :: String.t) :: {:ok, [map()]} | {:error, String.t, integer}
+  end
+
 end

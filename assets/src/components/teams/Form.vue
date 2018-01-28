@@ -80,7 +80,6 @@
             this.isLoading = true;
             saveTeam(new Team(this.team, this.company, this.address))
               .then((team) => {
-                console.log(team)
                 this.$router.push({ path: `/teams/${team.key}/add-restaurant` })
               })
               .catch(this.processErrorCreatingTeam);

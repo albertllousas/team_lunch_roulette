@@ -39,6 +39,7 @@ Ready to run in production? Please [check deployment guides](http://www.phoenixf
 
 - Front-end: 
     - vue 2 
+    - vue blue 
     - Web pack
     - scss
     - ES6

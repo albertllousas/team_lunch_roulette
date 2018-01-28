@@ -14,10 +14,18 @@ config :logger, level: :warn
 
 # mocking services
 config :team_lunch_roulette, teams: TeamLunchRoulette.Mocks.Teams
+config :team_lunch_roulette, maps: TeamLunchRoulette.GoogleMapsProxy
 
 # repository
 config :team_lunch_roulette, :db,
        name: "my_mongo_test"
+
+config :team_lunch_roulette, google_api_web_service: "google_api_key"
+
+# Use mock adapter for all clients
+config :tesla, adapter: :mock
+# or only for one
+#config :tesla, MyClient, adapter: :mock
 
 # Configure your database
 #config :team_lunch_roulette,

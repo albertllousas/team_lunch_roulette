@@ -31,7 +31,8 @@
     "vee-validate": "^2.0.0-rc.26",
     "vue": "^2.4.4",
     "vue-blu": "^0.1.9",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-autocomplete-js": "^0.2.2"
   },
   "browserslist": [
     "> 1%",

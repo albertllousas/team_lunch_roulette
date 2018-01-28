@@ -17,7 +17,8 @@ config :team_lunch_roulette, TeamLunchRouletteWeb.Endpoint,
 
 
 # services
-config :team_lunch_roulette, teams: TeamLunchRoulette.TeamsInMongo
+config :team_lunch_roulette, teams: TeamLunchRoulette.TeamsMongoImpl
+config :team_lunch_roulette, maps: TeamLunchRoulette.GoogleMapsProxy
 
 # repository
 config :team_lunch_roulette, :db,
@@ -65,3 +66,5 @@ config :phoenix, :stacktrace_depth, 20
 #  database: "team_lunch_roulette_dev",
 #  hostname: "localhost",
 #  pool_size: 10
+
+import_config "dev.secret.exs"
