@@ -15,6 +15,20 @@ This app is a simple tool that allow teams to choose where to eat everyday rando
 
 ## Run in your local machine
 
+First step, phoenix will look for some secret passwords you need in order to compile:
+
+- /config/dev.secret.exs
+- /config/prod.secret.exs 
+
+These files should contain the expected secret configuration like:
+
+  ```
+  use Mix.Config
+ 
+  config :team_lunch_roulette, google_api_places_web_service: "<YOUR_API_KEY>" 
+
+  ```
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -23,6 +37,8 @@ To start your Phoenix server:
   * Pull mongo docker image with `docker pull mongo`
   * Run mongo image with `docker run --name mongo-team-lunch-roulette -p 27017:27017 -it --rm -d mongo` 
   * Start Phoenix endpoint with `mix phx.server`
+
+
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 

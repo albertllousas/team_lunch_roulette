@@ -3,7 +3,7 @@
 
         <div class="column first-column"></div>
         <div class="column is-6">
-            <p class="control ">
+            <div class="control autocomplete-wrapper">
                 <autocomplete
                         url="/api/maps/places"
                         param="query"
@@ -11,31 +11,65 @@
                         :debounce="500"
                         label="formatted_address"
                         :classes="{ input: 'input is-large input'}"
+                        :onSelect="onSelectPlace"
                 >
                 </autocomplete>
-            </p>
+
+            </div>
+            <div class="control " v-if="showPlaceDetails" >
+                <div class="box is-feature has-text-centered is-size-4 restaurant-details">
+                    <div class="box-header">
+                        <h2 class="box-title app-title is-size-1 is-size-3-mobile"> {{ placeName }} </h2>
+                    </div>
+                    <div class="box-body">
+                        <p>
+                            direction icon: {{placeAddress}}
+                        </p>
+                        <p>
+                            opened
+                        </p>
+                        <p>
+                            other
+                        </p>
+                        <p>
+                            tasks
+                        </p>
 
 
-            <!--<form id="restaurant-form" @submit.prevent="validateBeforeSubmit">-->
-            <!--<p class="control has-icon ">-->
-            <!--<input-->
-            <!--name="restaurant"-->
-            <!--type="text"-->
-            <!--v-model="restaurant"-->
-            <!--class="input is-large"-->
-            <!--placeholder="Name, City, Street, number, country"-->
-            <!--/>-->
-            <!--&lt;!&ndash;<i class="fa fa-soccer-ball-o"></i>&ndash;&gt;-->
-            <!--</p>-->
-            <!--<div class="has-text-centered">-->
-            <!--<button class="is-primary button is-large " type="submit" :class="{'is-loading': isLoading}">-->
-            <!--<span class="icon">-->
-            <!--<i class="fa fa-magic"></i>-->
-            <!--</span>-->
-            <!--<span> Generate</span>-->
-            <!--</button>-->
-            <!--</div>-->
-            <!--</form>-->
+
+
+                        <google-map
+                                :center="center"
+                                :zoom="16"
+                                style="width: 100%; height: 300px"
+                                :options="{styles: styles}"
+                        >
+                            <google-marker
+                                    :icon="{url: '/images/location.svg', scaledSize: {width:50, height:50}}"
+                                    v-for="m in markers"
+                                    :position="m.position"
+                                    :clickable="true"
+                                    :draggable="true"
+                                    @click="center=m.position"
+                            >
+                            </google-marker>
+                        </google-map>
+                        <p>
+                            rating
+                        </p>
+                    </div>
+
+                </div>
+                <div class="has-text-centered">
+                    <button class="is-primary button is-large " type="submit">
+                                  <span class="icon">
+                                    <i class="fa fa-magic"></i>
+                                  </span>
+                        <span> Add restaurant</span>
+                    </button>
+                </div>
+            </div>
+
         </div>
         <div class="column"></div>
     </div>
@@ -43,14 +77,59 @@
 
 <script>
   import Autocomplete from 'vue2-autocomplete-js';
+  import Vue from 'vue';
+  import * as VueGoogleMaps from 'vue2-google-maps';
+  import mapStyles from './map_style.json'
+
+  Vue.use(VueGoogleMaps, {
+    load: {
+      key: 'AIzaSyCsVv5H7PRRu1L1pNt5YNUji5PvNb52XUA'
+    },
+    // Demonstrating how we can customize the name of the components
+    installComponents: false,
+  });
+
+  Vue.component('google-map', VueGoogleMaps.Map);
+  Vue.component('google-marker', VueGoogleMaps.Marker);
 
   export default {
 
     components: {Autocomplete},
 
+    data () {
+      return {
+        showPlaceDetails: false,
+        placeName:"",
+        center: {
+          lat: 10.0,
+          lng: 10.0
+        },
+        markers: [{
+          position: {
+            lat: 10.0,
+            lng: 10.0
+          }
+        }],
+        styles: mapStyles
+      };
+    },
+
     methods: {
-      getData (value) {
-        console.log(value);
+      onSelectPlace (value) {
+        console.log(value.geometry.location.lat);
+        this.placeName = value.name;
+        this.placeAddress = value.formatted_address;
+        this.center = {
+          lat: value.geometry.location.lat,
+          lng: value.geometry.location.lng
+        };
+        this.markers = [{
+          position: {
+            lat: value.geometry.location.lat,
+            lng: value.geometry.location.lng
+          }
+        }];
+        this.showPlaceDetails = true;
       }
     }
   };
@@ -59,6 +138,10 @@
 <style lang="scss">
     @import "../../assets/vars";
     @import "../../../node_modules/vue2-autocomplete-js/dist/style/vue2-autocomplete.css";
+
+    .autocomplete-wrapper {
+        z-index: 4;
+    }
 
     .autocomplete ul {
         width: 100%;
@@ -78,8 +161,9 @@
     .autocomplete ul li a {
         background-color: transparent;
         /*color: #00d1b2;*/
-        color:#0AAFC4;
+        color: #0AAFC4;
         font-size: 20px;
+
     }
 
     .autocomplete ul li a:hover, .autocomplete ul li.focus-list a {
@@ -89,6 +173,23 @@
 
     .autocomplete ul li a:hover .autocomplete-anchor-label, .autocomplete ul li.focus-list a span, .autocomplete ul li a:hover .autocomplete-anchor-label, .autocomplete ul li.focus-list a span {
         color: grey;
+    }
+
+    .box {
+        box-shadow: 0px 2px 4px 3px rgba(219, 219, 219, 0.5);
+        border-radius: 6px;
+        background-color: white;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 2rem;
+        color: #666;
+        transform: translate3d(0, 0, 0);
+        transition: 300ms;
+    }
+
+    .restaurant-details {
+        margin-top: 30px;
+        padding: 0px;
     }
 
     /*.control.has-icon:not(.has-icon-right) .input.is-large {*/

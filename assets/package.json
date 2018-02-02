@@ -32,7 +32,8 @@
     "vue": "^2.4.4",
     "vue-blu": "^0.1.9",
     "vue-router": "^3.0.1",
-    "vue2-autocomplete-js": "^0.2.2"
+    "vue2-autocomplete-js": "^0.2.2",
+    "vue2-google-maps": "^0.8.4"
   },
   "browserslist": [
     "> 1%",

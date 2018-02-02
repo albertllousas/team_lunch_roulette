@@ -20,7 +20,7 @@ config :team_lunch_roulette, maps: TeamLunchRoulette.GoogleMapsProxy
 config :team_lunch_roulette, :db,
        name: "my_mongo_test"
 
-config :team_lunch_roulette, google_api_web_service: "google_api_key"
+config :team_lunch_roulette, google_api_places_web_service: "google_api_key"
 
 # Use mock adapter for all clients
 config :tesla, adapter: :mock

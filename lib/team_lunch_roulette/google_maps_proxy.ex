@@ -3,7 +3,7 @@ defmodule TeamLunchRoulette.GoogleMapsProxy do
 
   @behaviour TeamLunchRoulette.Maps
 
-  @google_maps_key Application.get_env :team_lunch_roulette, :google_api_web_service
+  @google_maps_key Application.get_env :team_lunch_roulette, :google_api_places_web_service
 
   @places_textsearch_path "/place/textsearch/json"
 

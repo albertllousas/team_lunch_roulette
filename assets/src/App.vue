@@ -11,10 +11,15 @@
             <div class="container">
                 <div class="content has-text-centered ">
                     <p>
-                        Vectors&nbsp;graphics designed by <a title="Freepik" href="http://www.freepik.com">Freepik</a>
-                        from <a title="Flaticon" href="http://www.flaticon.com">www.flaticon.com</a>
+                        <!--Vectors&nbsp;graphics designed by <a title="Freepik" href="http://www.freepik.com">Freepik</a>-->
+                        <!--from <a title="Flaticon" href="http://www.flaticon.com">www.flaticon.com</a>-->
+                    <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a
+                            href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
+                            href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                            target="_blank">CC 3.0 BY</a></div>
                     </p>
                 </div>
+
             </div>
         </footer>
 
@@ -28,7 +33,7 @@
   export default {
     name: 'app',
     components: {
-     NavBar
+      NavBar
     }
   };
 </script>
