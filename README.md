@@ -2,7 +2,7 @@
 
 Are you tired to create the typical todo-list project? 
 
-Here not another todo list app, a real world application just to try Vue and Elixir in a real world application.
+Here not another todo list app, it is an project to try Vue and Elixir in a real world application.
 
 This app is a simple tool that allow teams to choose where to eat everyday randomly.
 
@@ -12,6 +12,17 @@ This app is a simple tool that allow teams to choose where to eat everyday rando
 - Elixir 1.5.1
 - Docker 17.09.1 
 - npm 5.6.0
+
+## Test
+
+ Running the frontend tests:
+ ```
+ cd assets && npm test
+ ```
+ Running the backend tests:
+  ```
+  mix test
+  ```
 
 ## Run in your local machine
 
@@ -32,7 +43,6 @@ These files should contain the expected secret configuration like:
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
   * Pull mongo docker image with `docker pull mongo`
   * Run mongo image with `docker run --name mongo-team-lunch-roulette -p 27017:27017 -it --rm -d mongo` 
@@ -70,17 +80,6 @@ Ready to run in production? Please [check deployment guides](http://www.phoenixf
     - MongoDB
     
 
-## Test
-
- Running the frontend tests:
- ```
- cd assets && npm test
- ```
- Running the backend tests:
-  ```
-  mix test
-  ```
-
 ## Implementation guidelines 
  
 ### Frontend
@@ -93,3 +92,19 @@ Ready to run in production? Please [check deployment guides](http://www.phoenixf
    * Guides: http://phoenixframework.org/docs/overview
    * Docs: https://hexdocs.pm/phoenix
    * Source: https://github.com/phoenixframework/phoenix
+   
+### Useful docker commands
+
+```
+docker run --name mongo-team-lunch-roulette -p 27017:27017 -it --rm -d mongo 
+
+docker ps
+
+docker inspect <id>
+
+docker exec -t -i <id> /bin/bash
+
+or
+
+docker exec -t mongo-team-lunch-roulette /bin/bash
+```

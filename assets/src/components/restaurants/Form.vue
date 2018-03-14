@@ -5,6 +5,7 @@
         <div class="column is-6">
             <div class="control autocomplete-wrapper">
                 <autocomplete
+                        placeholder="Please introduce a place ... "
                         url="/api/maps/places"
                         param="query"
                         anchor="name"
@@ -12,31 +13,21 @@
                         label="formatted_address"
                         :classes="{ input: 'input is-large input'}"
                         :onSelect="onSelectPlace"
+                        :onAjaxProgress="show"
                 >
                 </autocomplete>
 
             </div>
-            <div class="control " v-if="showPlaceDetails" >
+            <div class="control " v-if="showPlaceDetails">
+
+                <div class="has-text-centered type-restaurant-header">
+                    <img v-bind:src="typeOfFoodImage" class="type-of-food" v-on:click="selectImage"/>
+                </div>
                 <div class="box is-feature has-text-centered is-size-4 restaurant-details">
                     <div class="box-header">
-                        <h2 class="box-title app-title is-size-1 is-size-3-mobile"> {{ placeName }} </h2>
+                        <h2 class="box-title app-title is-size-2 is-size-3-mobile"> {{ placeName }} </h2>
                     </div>
                     <div class="box-body">
-                        <p>
-                            direction icon: {{placeAddress}}
-                        </p>
-                        <p>
-                            opened
-                        </p>
-                        <p>
-                            other
-                        </p>
-                        <p>
-                            tasks
-                        </p>
-
-
-
 
                         <google-map
                                 :center="center"
@@ -55,8 +46,9 @@
                             </google-marker>
                         </google-map>
                         <p>
-                            rating
+                            {{placeAddress}}
                         </p>
+
                     </div>
 
                 </div>
@@ -72,14 +64,24 @@
 
         </div>
         <div class="column"></div>
+
+        <restaurant-image-selector
+                v-bind:show-when="selectImagePopUpIsShown"
+                v-on:close="selectImagePopUpIsShown=false"
+                v-on:select="changeImage"
+        />
+
     </div>
+
+
 </template>
 
 <script>
   import Autocomplete from 'vue2-autocomplete-js';
   import Vue from 'vue';
   import * as VueGoogleMaps from 'vue2-google-maps';
-  import mapStyles from './map_style.json'
+  import mapStyles from './map_style.json';
+  import RestaurantImageSelector from './RestaurantImageSelector';
 
   Vue.use(VueGoogleMaps, {
     load: {
@@ -94,12 +96,16 @@
 
   export default {
 
-    components: {Autocomplete},
+    components: {
+      RestaurantImageSelector,
+      Autocomplete
+    },
 
     data () {
       return {
+        selectImagePopUpIsShown: false,
         showPlaceDetails: false,
-        placeName:"",
+        placeName: '',
         center: {
           lat: 10.0,
           lng: 10.0
@@ -110,11 +116,19 @@
             lng: 10.0
           }
         }],
-        styles: mapStyles
+        styles: mapStyles,
+        typeOfFoodImage: './images/store.svg'
       };
     },
-
     methods: {
+      changeImage (image) {
+        this.typeOfFoodImage = image;
+        this.selectImagePopUpIsShown = false;
+      },
+      selectImage () {
+        this.selectImagePopUpIsShown = true;
+      },
+
       onSelectPlace (value) {
         console.log(value.geometry.location.lat);
         this.placeName = value.name;
@@ -138,6 +152,28 @@
 <style lang="scss">
     @import "../../assets/vars";
     @import "../../../node_modules/vue2-autocomplete-js/dist/style/vue2-autocomplete.css";
+
+    body > div.modal.align-baseline.is-active > div.modal-card {
+        font-family: Bariol;
+    }
+
+    .type-restaurant-header {
+        margin-top: -100px;
+        top: 100px;
+        position: relative;
+        z-index: 1;
+        padding-bottom: 20px;
+    }
+
+    .type-of-food {
+        cursor: pointer;
+        width: 120px;
+        transition: all .2s ease-in-out;
+    }
+
+    .type-of-food:hover {
+        transform: scale(1.1);
+    }
 
     .autocomplete-wrapper {
         z-index: 4;
@@ -176,7 +212,7 @@
     }
 
     .box {
-        box-shadow: 0px 2px 4px 3px rgba(219, 219, 219, 0.5);
+
         border-radius: 6px;
         background-color: white;
         margin-left: 0px;
@@ -188,8 +224,28 @@
     }
 
     .restaurant-details {
+        box-shadow: 5px 8px 20px 0 rgba(219, 219, 219, 0.5);
         margin-top: 30px;
         padding: 0px;
+    }
+
+    .restaurant-details p {
+        padding: 5px;
+    }
+
+    .box-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .box-title {
+        padding-top: 50px;
+    }
+
+    select.select-restaurant {
+        border: 0;
+        color: #666;
+        font-size: 15px;
     }
 
     /*.control.has-icon:not(.has-icon-right) .input.is-large {*/

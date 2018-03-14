@@ -9,6 +9,9 @@ module.exports = {
     publicPath: '/app/',
     filename: 'build.js'
   },
+  node: {
+    fs: "empty"
+  },
   module: {
     rules: [
       {
